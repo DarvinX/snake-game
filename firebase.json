@@ -1,0 +1,11 @@
+{
+    "hosting": {
+        "site": "nokiasnake",
+        "public": "public",
+        "ignore": [
+            "firebase.json",
+            "**/.*",
+            "**/node_modules/**"
+        ]
+    }
+}

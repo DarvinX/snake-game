@@ -1,0 +1,22 @@
+.game-container {
+    width: 100%;
+    align-content: center;
+    text-align: center;
+    margin: auto;
+    display: inline-block;
+}
+
+.game-board {
+    height: 20rem;
+    width: 20rem;
+    display: flex;
+    flex-flow: row wrap;
+    align-content: center;
+    text-align: center;
+    border: solid 3px black;
+    margin: auto;
+}
+
+i {
+    background: blue;
+}
