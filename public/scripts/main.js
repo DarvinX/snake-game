@@ -28,20 +28,94 @@ var shouldMove = false;
 
 //Snake object to handle snake properties
 class Snake {
-    constructor(length = 8, color="red"){
-        this.length = length;
-        this.color = color;
-    }
+  constructor(length = 8, color = "red", rate = 1, headColor = "green") {
+    this.length = length; // Initial length of the snake
+    this.color = color; // Initial color of the snake
+    this.GrowthRate = rate; // Initial growth rate
+    this.headColor = headColor;
+  }
 
-    incrementLength(incrementValue = 1){
-        this.length = incrementValue;
-    }
-    get Color(){
-        return this.color;
-    }
-    set Color(color){
-        this.color = color;
-    }
+  Grow() {
+    // Grow the length of the snake
+    this.length += this.GrowthRate;
+  }
+
+  get Color() {
+    return this.color;
+  }
+  set Color(color) {
+    this.color = color;
+  }
+  get Length() {
+    return this.color;
+  }
+  set Length(color) {
+    this.color = color;
+  }
+
+  get GrowthRate() {
+    return this.GrowthRate;
+  }
+  set GrowthRate(rate) {
+    this.GrowthRate = rate;
+  }
+}
+
+class Board {
+  constructor(
+    height = 80,
+    width = 80,
+    backgroundColor = "blue",
+    borderColor = "black",
+    resolution = "1",
+    resUnit = "rem"
+  ) {
+    this._height = height;
+    this._width = width;
+    this._backgroundColor = backgroundColor;
+    this._borderColor = borderColor;
+    this._resolution = resolution;
+    this._resUnit = resUnit;
+  }
+
+  get HTML() {
+    html = "<div style='width='";
+    style =
+      "width=" +
+      this._resolution * this._width +
+      resUnit +
+      ";height=" +
+      this._resolution * this._width +
+      resUnit;
+  }
+
+  get height() {
+    return this._height;
+  }
+
+  set height(height) {
+    this._height = height;
+  }
+
+  get width() {
+    return this._width;
+  }
+
+  set width(width) {
+    this._width = width;
+  }
+
+  get backgroundColor() {
+    return this._backgroundColor;
+  }
+
+  set backgroundColor(color) {
+    this._backgroundColor = color;
+  }
+}
+
+class Game {
+  constructor(snake, board) {}
 }
 
 document.addEventListener("DOMContentLoaded", function () {
