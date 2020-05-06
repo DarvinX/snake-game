@@ -78,15 +78,29 @@ class Board {
     this._resUnit = resUnit;
   }
 
-  get HTML() {
-    html = "<div style='width='";
-    style =
-      "width=" +
-      this._resolution * this._width +
-      resUnit +
-      ";height=" +
-      this._resolution * this._width +
-      resUnit;
+  get HTML() { //returns the html of the complete board
+    let board = document.createElement("div");
+    board.id = "board";
+    board.className = "game-board";
+    // style the board
+    board.style.height = this._height * this._resolution + this._resUnit;
+    board.style.width = this._width * this._resolution + this._resUnit;
+    board.style.border =
+      "solid " + this._borderColor + " " + this._resolution + this._resUnit;
+
+
+    for (let i = 0; i < this._height; i++) {
+      for (let j = 0; j < this._width; j++) {
+        let child = document.createElement("div");
+        child.style.height = this._resolution + this._resUnit;
+        child.style.width = this._resolution + this._resUnit;
+        child.style.backgroundColor = this._backgroundColor;
+        child.id = i+','+j;
+        board.appendChild(child);
+      }
+    }
+
+    return board;
   }
 
   get height() {
@@ -118,6 +132,7 @@ class Game {
   constructor(snake, board) {}
 }
 
+/*
 document.addEventListener("DOMContentLoaded", function () {
   // Draw the game board
   for (let i = 0; i < boardDim * boardDim; i++) {
@@ -216,3 +231,4 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 });
+*/
