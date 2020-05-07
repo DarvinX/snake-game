@@ -28,36 +28,48 @@ var shouldMove = false;
 
 //Snake object to handle snake properties
 class Snake {
-  constructor(length = 8, color = "red", rate = 1, headColor = "green") {
-    this.length = length; // Initial length of the snake
-    this.color = color; // Initial color of the snake
-    this.GrowthRate = rate; // Initial growth rate
-    this.headColor = headColor;
+  constructor(length = 8, color = "red", rate = 1, headColor = "green", board) {
+    this._length = length; // Initial length of the snake
+    this._color = color; // Initial color of the snake
+    this._GrowthRate = rate; // Initial growth rate
+    this._headColor = headColor;
+    this._board = board;
+    // this._snakeHead = 
+    // this._snakeBody = 
   }
 
   Grow() {
     // Grow the length of the snake
-    this.length += this.GrowthRate;
+    this._length += this._GrowthRate;
+  }
+
+  startMoving(){
+    this._snakeHead[1] += 1;
+    this._snakeBody
+  }
+
+  moveUp(){
+    
   }
 
   get Color() {
-    return this.color;
+    return this._color;
   }
   set Color(color) {
-    this.color = color;
+    this._color = color;
   }
   get Length() {
-    return this.color;
+    return this._color;
   }
   set Length(color) {
-    this.color = color;
+    this._color = color;
   }
 
   get GrowthRate() {
-    return this.GrowthRate;
+    return this._GrowthRate;
   }
   set GrowthRate(rate) {
-    this.GrowthRate = rate;
+    this._GrowthRate = rate;
   }
 }
 
@@ -68,7 +80,7 @@ class Board {
     backgroundColor = "blue",
     borderColor = "black",
     resolution = "1",
-    resUnit = "rem"
+    resUnit = "vw"
   ) {
     this._height = height;
     this._width = width;
@@ -78,7 +90,8 @@ class Board {
     this._resUnit = resUnit;
   }
 
-  get HTML() { //returns the html of the complete board
+  get HTML() {
+    //returns the html of the complete board
     let board = document.createElement("div");
     board.id = "board";
     board.className = "game-board";
@@ -88,16 +101,13 @@ class Board {
     board.style.border =
       "solid " + this._borderColor + " " + this._resolution + this._resUnit;
 
-
-    for (let i = 0; i < this._height; i++) {
-      for (let j = 0; j < this._width; j++) {
+    for (let i = 0; i < this._height*this._width; i++) {
         let child = document.createElement("div");
         child.style.height = this._resolution + this._resUnit;
         child.style.width = this._resolution + this._resUnit;
         child.style.backgroundColor = this._backgroundColor;
-        child.id = i+','+j;
+        child.id = i;
         board.appendChild(child);
-      }
     }
 
     return board;
@@ -129,9 +139,18 @@ class Board {
 }
 
 class Game {
-  constructor(snake, board) {}
+  constructor(board =new Board(), snake =new Snake()) {
+    this._snake = snake;
+    this._board = board;
+    document.getElementById("app").innerHTML = this._board.HTML.outerHTML;
+  }
+  start() {
+    this._snake.startMoving();
+  }
+  pause() {}
+  gameOver() {}
 }
-
+game = new Game;
 /*
 document.addEventListener("DOMContentLoaded", function () {
   // Draw the game board
